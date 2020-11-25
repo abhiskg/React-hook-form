@@ -5,8 +5,9 @@ import "./SignUp.css";
 function SignUp() {
   const { register, handleSubmit, errors } = useForm();
 
-  const onSubmit = (values) => {
+  const onSubmit = (values, e) => {
     console.log("Form data", values);
+    e.target.reset();
   };
   return (
     <div className="signup">
@@ -27,7 +28,7 @@ function SignUp() {
         {errors.bdate && <p>Required</p>}
 
         <label>Select Gender</label>
-        <select name="gender" ref={register()}>
+        <select name="gender" ref={register}>
           <option value="male">male</option>
           <option value="female">female</option>
           <option value="other">other</option>
