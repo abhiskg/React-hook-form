@@ -1,21 +1,32 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import "./YupForm.css";
 
+const schema = Yup.object().shape({
+  name: Yup.string().required(),
+  bdate: Yup.string().required(),
+  email: Yup.string().email().required(),
+  password: Yup.string().required().min(6),
+});
+
 function YupForm() {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const onSubmit = (values, e) => {
     console.log("Form data", values);
     e.target.reset();
   };
   return (
-    <div className="yupForm">
+    <div className="signup">
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>Name</label>
-        <input type="text" name="name" ref={register({ required: true })} />
-        {errors.name && <p>Required</p>}
+        <input type="text" name="name" ref={register} />
+        {errors.name && <p>{errors.name.message}</p>}
 
         <label>Date of birth</label>
         <input
@@ -23,9 +34,9 @@ function YupForm() {
           type="date"
           min="2010-01-01"
           placeholder="2010-01-01"
-          ref={register({ required: true })}
+          ref={register}
         />
-        {errors.bdate && <p>Required</p>}
+        {errors.bdate && <p>{errors.bdate.message}</p>}
 
         <label>Select Gender</label>
         <select name="gender" ref={register}>
@@ -33,22 +44,15 @@ function YupForm() {
           <option value="female">female</option>
           <option value="other">other</option>
         </select>
-        {errors.gender && <p>Required</p>}
+        {errors.gender && <p>{errors.gebder.message}</p>}
 
         <label>Email</label>
-        <input name="email" ref={register({ required: true })} />
-        {errors.email && <p>Required</p>}
+        <input name="email" ref={register} />
+        {errors.email && <p>{errors.email.message}</p>}
 
         <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          ref={register({ required: true, minLength: 6 })}
-        />
-        {errors.password?.type === "required" && <p>Required</p>}
-        {errors.password?.type === "minLength" && (
-          <p>Password should be minimum of 6 letters</p>
-        )}
+        <input type="password" name="password" ref={register} />
+        {errors.password && <p>{errors.password.message}</p>}
 
         <button type="submit">Submit</button>
       </form>
