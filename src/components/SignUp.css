@@ -39,6 +39,8 @@ select {
 
 p {
   color: red;
+  font-size: 13px;
+  font-weight: 500;
 }
 
 p::before {

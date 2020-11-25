@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import "./SignUp.css";
 
 function SignUp() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = (values) => {
     console.log("Form data", values);
@@ -13,16 +13,18 @@ function SignUp() {
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>Name</label>
-        <input type="text" name="name" ref={register()} />
+        <input type="text" name="name" ref={register({ required: true })} />
+        {errors.name && <p>Required</p>}
 
         <label>Date of birth</label>
         <input
-          type="date"
           name="bdate"
+          type="date"
           min="2010-01-01"
           placeholder="2010-01-01"
-          ref={register()}
+          ref={register({ required: true })}
         />
+        {errors.bdate && <p>Required</p>}
 
         <label>Select Gender</label>
         <select name="gender" ref={register()}>
@@ -30,12 +32,22 @@ function SignUp() {
           <option value="female">female</option>
           <option value="other">other</option>
         </select>
+        {errors.gender && <p>Required</p>}
 
         <label>Email</label>
-        <input name="email" ref={register()} />
+        <input name="email" ref={register({ required: true })} />
+        {errors.email && <p>Required</p>}
 
         <label>Password</label>
-        <input type="password" name="password" ref={register()} />
+        <input
+          type="password"
+          name="password"
+          ref={register({ required: true, minLength: 6 })}
+        />
+        {errors.password?.type === "required" && <p>Required</p>}
+        {errors.password?.type === "minLength" && (
+          <p>Password should be minimum of 6 letters</p>
+        )}
 
         <button type="submit">Submit</button>
       </form>
