@@ -1,10 +1,12 @@
 import "./App.css";
 import SignUp from "./components/SignUp";
+import YupForm from "./components/YupForm";
 
 function App() {
   return (
     <div className="App">
-      <SignUp />
+      {/* <SignUp /> */}
+      <YupForm />
     </div>
   );
 }

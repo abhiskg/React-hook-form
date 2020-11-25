@@ -1,0 +1,65 @@
+.yupForm {
+  display: grid;
+  place-items: center;
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+
+form {
+  display: block;
+}
+
+h1 {
+  color: #ff9b21;
+  font-weight: 600;
+}
+
+label {
+  display: block;
+  /* color: #80f0d8; */
+  color: #f4af5a;
+  font-size: 20px;
+  margin-top: 10px;
+}
+input,
+select {
+  display: block;
+  outline-width: 0;
+  padding: 10px 15px;
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 2px;
+  font-size: medium;
+  border: 2px solid #80f0d8;
+}
+
+select {
+  border: 2px solid #80f0d8;
+}
+
+p {
+  color: red;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+p::before {
+  content: "⚠ ";
+  display: inline;
+}
+
+button {
+  background: #acf6e6;
+  color: white;
+  font-size: 20px;
+  margin-top: 20px;
+  padding: 10px 100px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 8px;
+}
+
+button:hover {
+  background: #80f0d8;
+  transition: 0.3s all;
+}
