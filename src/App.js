@@ -1,10 +1,10 @@
 import "./App.css";
-import SignUp from "./components/SignUp";
+import MaterialForm from "./components/MaterialForm";
 
 function App() {
   return (
     <div className="App">
-      <SignUp />
+      <MaterialForm />
     </div>
   );
 }
