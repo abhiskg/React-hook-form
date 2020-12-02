@@ -4,7 +4,7 @@ import { useForm, Controller } from "react-hook-form";
 import { makeStyles } from "@material-ui/core/styles";
 import "./MaterialForm.css";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     "& .MuiTextField-root": {
       marginTop: "18px",
@@ -21,6 +21,9 @@ const useStyles = makeStyles((theme) => ({
     },
     "& .MuiButton-root:hover": {
       background: "#80f0d8",
+    },
+    "& .MuiOutlinedInput-input": {
+      paddingRight: "45px",
     },
   },
 }));
@@ -95,6 +98,7 @@ function MaterialForm() {
         <TextField
           label="Email"
           name="email"
+          type="email"
           variant="outlined"
           inputRef={register({ required: true })}
         />
